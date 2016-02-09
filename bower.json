@@ -1,0 +1,30 @@
+{
+    "name": "TinyCRM",
+    "description": "CRM system for trading purposes",
+    "main": "",
+    "moduleType": [],
+    "keywords": [
+        "TinyCRM",
+        "ZF2"
+    ],
+        "authors": [
+        "Vadim Izmalkov <399115@gmail.com> Visoft"
+    ],
+    "license": "MIT",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "directory": "~/",
+    "dependencies": {
+        "jquery": "~2.1.4",
+        "bootstrap": "~3.3.5",
+        "fontawesome": "~4.3.0",
+        "intl-tel-input": "6.0.0",
+        "admin-lte": "~2.3.2"
+    }
+}
