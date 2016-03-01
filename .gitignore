@@ -13,3 +13,4 @@ vendor/
 data/DoctrineORMModule/
 data/VisoftMailerModule/
 public/assets/plugins/*
+public/uploads/
