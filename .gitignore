@@ -9,3 +9,7 @@ nbproject
 .settings
 vendor
 composer.phar
+vendor/
+data/DoctrineORMModule/
+data/VisoftMailerModule/
+public/assets/plugins/*
