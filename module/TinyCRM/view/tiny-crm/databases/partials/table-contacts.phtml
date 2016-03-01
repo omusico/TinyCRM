@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Contacts</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody><tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php 
+                    foreach ($entities as $contact): 
+                        $editContactUrl = $this->url('tiny-crm/default', [
+                            'controller' => 'contacts', 
+                            'action' => 'edit',
+                            'entityId' => $contact->getId(),
+                        ]);
+                        $time = empty($contact->getTime()) ? null : $contact->getTime()->format('Y/m/d H:i');
+                    ?>
+                    <tr>
+                        <td><?php echo $contact->getId(); ?></td>
+                        <td><a href="<?php echo $editContactUrl; ?>"?><?php echo $contact->getFullName(); ?></td>
+                        <td><?php echo $contact->getPhone(); ?></td>
+                        <td><?php echo $contact->getEmail(); ?></td>
+                        <td><?php echo $time; ?></td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody></table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+      <!-- /.box -->
+    </div>
+</div>
