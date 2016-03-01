@@ -1,0 +1,8 @@
+PHP Fatal error:  Call to undefined method Zend\Console\Request::getRequestUri() in /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-base-module/Module.php on line 198
+PHP Stack trace:
+PHP   1. {main}() /var/www/html/tinycrm/public/index.php:0
+PHP   2. Zend\Mvc\Application->run() /var/www/html/tinycrm/public/index.php:21
+PHP   3. Zend\EventManager\EventManager->trigger() /var/www/html/tinycrm/vendor/zendframework/zend-mvc/src/Application.php:297
+PHP   4. Zend\EventManager\EventManager->triggerListeners() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:214
+PHP   5. call_user_func:{/var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490}() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490
+PHP   6. VisoftBaseModule\Module->onRoute() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490

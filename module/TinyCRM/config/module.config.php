@@ -26,6 +26,7 @@ return array(
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
+            
             'tiny-crm' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -41,14 +42,37 @@ return array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '[:controller[/:action[/]]]',
+                            'route'    => ':controller[/[:action[/[:entityId[/]]]]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                // 'entityId' =>
                             ),
                             'defaults' => [],
                         ),
                     ),
+                ),
+            ),
+            'sign-in' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/sign-in[/]',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'VisoftBaseModule\Service\Authentication\Controller',
+                        'controller'    => 'Authentication',
+                        'action'        => 'sign-in',
+                    ],
+                ),
+            ),
+            'sign-out' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/sign-out[/]',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'VisoftBaseModule\Service\Authentication\Controller',
+                        'controller'    => 'Authentication',
+                        'action'        => 'sign-out',
+                    ],
                 ),
             ),
         ),
@@ -73,20 +97,50 @@ return array(
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
-            'TinyCRM\Controller\Index' => Controller\IndexController::class
-        ),
+        // 'invokables' => array(
+        //     'TinyCRM\Controller\Index' => Controller\IndexController::class
+        // ),
     ),
     'crud_controllers' => [
         'TinyCRM\Controller\Managers' => [
             'entityClass' => 'TinyCRM\Entity\User',
             'uploadPath' => 'public/uploads/managers',
             // 'templates' => [
-            //     'create' => 'fryday/page-composer/layout-v1',
-            //     'edit' => 'fryday/page-composer/layout-v1',
+            //     'create' => '',
+            //     'edit' => '',
             // ],
             'forms' => [
                 'class' => 'TinyCRM\Form\UserForm',
+                'options' => [
+                    'create' => 'create',
+                    'edit' => 'edit',
+                ],
+            ]
+        ],
+        'TinyCRM\Controller\Databases' => [
+            'entityClass' => 'TinyCRM\Entity\Database',
+            'uploadPath' => 'public/uploads/databases',
+            // 'templates' => [
+            //     'create' => '',
+            //     'edit' => '',
+            // ],
+            'forms' => [
+                'class' => 'TinyCRM\Form\DatabaseForm',
+                'options' => [
+                    'create' => 'create',
+                    'edit' => 'edit',
+                ],
+            ]
+        ],
+        'TinyCRM\Controller\Contacts' => [
+            'entityClass' => 'TinyCRM\Entity\Contact',
+            'uploadPath' => 'public/uploads/contacts',
+            // 'templates' => [
+            //     'create' => '',
+            //     'edit' => '',
+            // ],
+            'forms' => [
+                'class' => 'TinyCRM\Form\ContactForm',
                 'options' => [
                     'create' => 'create',
                     'edit' => 'edit',
@@ -103,11 +157,15 @@ return array(
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'error/403'               => __DIR__ . '/../view/error/403.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy'
         ),
     ),
     // Placeholder for console routes
@@ -137,9 +195,10 @@ return array(
             'orm_default' => array(
                 'resolvers' => array(
                     'VisoftBaseModule\Entity\UserInterface'             => 'TinyCRM\Entity\User',
-                    // 'VisoftMailerModule\Entity\MailingListInterface'    => 'TinyCRM\Entity\ContactDatabase',
-                    // 'VisoftMailerModule\Entity\ContactInterface'        => 'TinyCRM\Entity\Contact',
+                    'VisoftMailerModule\Entity\DatabaseInterface'       => 'TinyCRM\Entity\Database',
+                    'VisoftMailerModule\Entity\ContactInterface'        => 'TinyCRM\Entity\Contact',
                     // 'VisoftMailerModule\Entity\EmailTemplateInterface'  => 'TinyCRM\Entity\EmailTemplate',
+                    // TODO: Remomve shit bellow
                     // 'VisoftMailerModule\Entity\MailingInterface'        => 'TinyCRM\Entity\MailingAnnouncement',
                 ),
             ),

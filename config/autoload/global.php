@@ -11,6 +11,19 @@
  * file.
  */
 
-return array(
-    // ...
-);
+return [
+	'navigation' => [
+		'tiny-crm' => [
+			[
+				'label' => '<i class="fa fa-users"></i> Managers',
+				'route' => 'tiny-crm/default',
+				'controller' => 'managers',
+			],
+			[
+				'label' => '<i class="fa fa-database"></i> Databases',
+				'route' => 'tiny-crm/default',
+				'controller' => 'databases',
+			],
+		],
+	],
+];

@@ -1,0 +1,22 @@
+Witing a job... 
+
+Fatal error: Call to undefined method VisoftMailerModule\Entity\StatusContactEnter::setNumContactsProcessed() in /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-mailer-module/src/VisoftMailerModule/Service/ContactService.php on line 138
+
+Call Stack:
+    0.0003     221376   1. {main}() /var/www/html/tinycrm/public/index.php:0
+    0.2151   12457048   2. Zend\Mvc\Application->run() /var/www/html/tinycrm/public/index.php:21
+    0.2293   13769976   3. Zend\EventManager\EventManager->trigger() /var/www/html/tinycrm/vendor/zendframework/zend-mvc/src/Application.php:314
+    0.2293   13769976   4. Zend\EventManager\EventManager->triggerListeners() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:214
+    0.2294   13771736   5. call_user_func:{/var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490}() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490
+    0.2294   13772304   6. Zend\Mvc\DispatchListener->onDispatch() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490
+    0.2336   14134968   7. Zend\Mvc\Controller\AbstractController->dispatch() /var/www/html/tinycrm/vendor/zendframework/zend-mvc/src/DispatchListener.php:93
+    0.2336   14135480   8. Zend\EventManager\EventManager->trigger() /var/www/html/tinycrm/vendor/zendframework/zend-mvc/src/Controller/AbstractController.php:118
+    0.2337   14135480   9. Zend\EventManager\EventManager->triggerListeners() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:214
+    0.2341   14147800  10. call_user_func:{/var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490}() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490
+    0.2341   14147928  11. Zend\Mvc\Controller\AbstractActionController->onDispatch() /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php:490
+    0.2341   14148192  12. VisoftMailerModule\Controller\ContactController->contactsEnterAction() /var/www/html/tinycrm/vendor/zendframework/zend-mvc/src/Controller/AbstractActionController.php:82
+    0.3375   17584576  13. VisoftBaseModule\Service\ProcessingService->run() /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-mailer-module/src/VisoftMailerModule/Controller/ContactController.php:45
+    0.3376   17584672  14. GearmanWorker->work() /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-base-module/src/VisoftBaseModule/Service/ProcessingService.php:56
+    0.3378   17584968  15. VisoftMailerModule\Controller\ContactController->VisoftMailerModule\Controller\{closure}() /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-base-module/src/VisoftBaseModule/Service/ProcessingService.php:56
+    0.4292   17724872  16. VisoftMailerModule\Service\ContactService->persist() /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-mailer-module/src/VisoftMailerModule/Controller/ContactController.php:41
+

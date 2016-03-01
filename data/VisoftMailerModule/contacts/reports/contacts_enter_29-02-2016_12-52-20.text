@@ -1,0 +1,34 @@
+====================  PERSIST CONTACTS REPORT  ====================
+Status id: 98
+Date: 29/02/2016
+------------------------------------------------------------------- 
+[29/02/2016 12:56:46.842031] Connected to worker. 
+[29/02/2016 12:56:46.842070] Persisting started. 
+------------------------------------------------------------------- 
+Warning: timuralim@yahoo.co.uk alredy exists and cannot be added 
+Warning: azholboldina@gmail.com alredy exists and cannot be added 
+Warning: dsalov@gmail.com alredy exists and cannot be added 
+Warning: daryabelkina@gmail.com alredy exists and cannot be added 
+Warning: info@robpaulussen.nl alredy exists and cannot be added 
+Warning: btulepbaev@gmail.com alredy exists and cannot be added 
+Warning: azyom@list.ru alredy exists and cannot be added 
+Warning: y.tutkushev@gmail.com alredy exists and cannot be added 
+Warning: anuar_zh@yahoo.com alredy exists and cannot be added 
+Warning: azat_19@yahoo.com alredy exists and cannot be added 
+Warning: baizhank@gmail.com alredy exists and cannot be added 
+Warning: semenova.marianna@gmail.com alredy exists and cannot be added 
+Warning: alexey.kolb@gmail.com alredy exists and cannot be added 
+Warning: erzhan086@gmail.com alredy exists and cannot be added 
+Warning: rinat.akhmetshin@yahoo.com alredy exists and cannot be added 
+Warning: pino.canelli@gmail.com alredy exists and cannot be added 
+Warning: narichmo@fiu.edu alredy exists and cannot be added 
+Warning: josh.adlesperger@gmail.com alredy exists and cannot be added 
+Warning: rjc@arcamresources.com alredy exists and cannot be added 
+Warning: madina0609@gmail.com alredy exists and cannot be added 
+Warning: ainur_kuat@yahoo.com alredy exists and cannot be added 
+------------------------------------------------------------------- 
+- total contacts: 21 
+- contacts added: 0 
+- contacts exist: 21 
+------------------------------------------------------------------- 
+[29/02/2016 12:56:47.031894] Persisting successfully completed. 

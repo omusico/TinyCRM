@@ -9,7 +9,9 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.5",
-        "zendframework/zendframework": "~2.5",
+        "zendframework/zendframework": "2.5.3",
+        "zendframework/zend-file": "2.5.1",
+        "zendframework/zend-validator": "2.5.4",
         "doctrine/common": ">=2.1",
         "doctrine/doctrine-orm-module": "0.*",
         "doctrine/doctrine-module": ">=0.8",

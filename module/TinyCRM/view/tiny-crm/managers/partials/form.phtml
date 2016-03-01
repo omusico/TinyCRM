@@ -12,6 +12,39 @@
                 <?php echo $this->formInput($this->form->get('fullName')); ?>
             </div>
         </div>
+        <div class="form-group">
+            <?php echo $this->formLabel($this->form->get('email')); ?>
+            <div class="col-sm-10">
+                <?php echo $this->formInput($this->form->get('email')); ?>
+            </div>
+        </div>
+        <div class="form-group">
+            <?php echo $this->formLabel($this->form->get('role')); ?>
+            <div class="col-sm-10">
+                <?php echo $this->formSelect($this->form->get('role')); ?>
+            </div>
+        </div>
+        <?php if ($thisAction === 'edit'): ?>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                Password
+            </label>
+            <div class="col-sm-10" style="padding-top: 7px;"> 
+               <a href="#" data-toggle="modal" data-target="#myModal">Reset</a>
+            </div>
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              Launch demo modal
+            </button> -->
+        </div>
+        <?php else: ?> 
+        <div class="form-group">
+            <?php echo $this->formLabel($this->form->get('password')); ?>
+            <div class="col-sm-10">
+                <?php echo $this->formInput($this->form->get('password')); ?>
+            </div>
+        </div>
+        <?php endif; ?>
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
@@ -19,4 +52,36 @@
     </div>
     <!-- /.box-footer -->
     <?php echo $this->form()->closeTag($form); ?>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <?php echo $this->form()->openTag($passwordResetForm); ?>
+            <div class="modal-body">
+                
+                <div class="box-body">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($passwordResetForm->get('password')); ?>
+                        <div class="col-sm-10">
+                            <?php echo $this->formInput($passwordResetForm->get('password')); ?>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-footer -->
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <?php echo $this->formSubmit($passwordResetForm->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($passwordResetForm); ?>
+        </div>
+    </div>
 </div>

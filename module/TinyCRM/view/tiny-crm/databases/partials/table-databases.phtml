@@ -1,0 +1,73 @@
+<?php 
+
+?>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Database</h3>
+        <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+                <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover" id="contacts-table">
+            <thead><tr>
+                <th>ID</th>
+                <th>Database</th>
+                <th>Contacts</th>
+                <th>Export</th>
+            </tr></thead>
+            <tbody>
+            <?php 
+            foreach ($entities as $database): 
+            	$viewUrl = $this->url('tiny-crm/default', [
+				    'controller' => 'databases',
+				    'action' => 'view',
+				    'entityId' => $database['entity']->getId(),
+				]);
+                $updateExportUrl = $this->url('tiny-crm/default', [
+                    'controller' => 'databases',
+                    'action' => 'update-export-csv',
+                    'entityId' => $database['entity']->getId(),
+                ]);
+                $updateStateExportUrl = $this->url('tiny-crm/default', [
+                    'controller' => 'databases',
+                    'action' => 'update-state-export',
+                    'entityId' => $database['entity']->getId(),
+                ]);
+                $downloadCsvUrl = $this->url('tiny-crm/default', [
+                    'controller' => 'databases',
+                    'action' => 'download-csv',
+                    'entityId' => $database['entity']->getId(),
+                ]);
+            ?>
+            <tr id="<?php echo $database['entity']->getId(); ?>" class="table-item">
+                <td><?php echo $database['entity']->getId(); ?></td>
+                <td><a href="<?php echo $viewUrl; ?>"?><?php echo $database['entity']->getName(); ?></td>
+                <td><?php echo $database['count']; ?></td>
+                <td id="export-database-<?php echo $database['entity']->getId(); ?>" data-update-state-export-url="<?php echo $updateStateExportUrl; ?>" data-download-csv-url="<?php echo $downloadCsvUrl; ?>" data-update-export-url="<?php echo $updateExportUrl; ?>">
+                    <a href="<?php echo $downloadCsvUrl; ?>">Download</a>
+                    <br>
+                    <small>
+                        <?php //var_dump($database['export-status']); ?>
+                        <?php //echo $database['export-status']->getCreatedAt()->format("m/d/y H:i:s"); ?>
+                        <a href="javascript:updateExport('<?php echo $database['entity']->getId(); ?>')"><i class="fa fa-refresh"></i></a>
+                    </small>
+                </td>
+            </tr>
+            <?php endforeach ?>
+        </tbody></table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    TinyCRM.initDatabasesInit();
+});
+</script>

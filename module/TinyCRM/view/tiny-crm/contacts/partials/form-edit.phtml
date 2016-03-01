@@ -1,0 +1,44 @@
+<?php $form->prepare(); ?>
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title"><?php echo $form->getTitle(); ?></h3>
+    </div>
+    <!-- form start -->
+    <?php echo $this->form()->openTag($form); ?>
+    <div class="box-body">
+        <div class="form-group">
+            <?php echo $this->formLabel($this->form->get('fullName')); ?>
+            <div class="col-sm-10">
+                <?php echo $this->formInput($this->form->get('fullName')); ?>
+            </div>
+        </div>
+        <div class="form-group">
+            <?php echo $this->formLabel($this->form->get('email')); ?>
+            <div class="col-sm-10">
+                <?php echo $this->formInput($this->form->get('email')); ?>
+            </div>
+        </div>
+        <div class="form-group">
+            <?php echo $this->formLabel($this->form->get('state')); ?>
+            <div class="col-sm-10">
+                <?php echo $this->formSelect($this->form->get('state')); ?>
+            </div>
+        </div>
+        <div class="form-group">
+            <?php echo $this->formLabel($this->form->get('time')); ?>
+            <div class="col-sm-10">
+                <?php echo $this->formInput($this->form->get('time')); ?>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <?php echo $this->formSubmit($this->form->get('submit')); ?>
+    </div>
+    <!-- /.box-footer -->
+    <?php echo $this->form()->closeTag($form); ?>
+</div>
+
+<script type="text/javascript">
+    // jQuery('#datetimepicker').datetimepicker();
+</script>

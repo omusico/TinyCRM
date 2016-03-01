@@ -13,7 +13,7 @@ return array(
         'AcMailer',
         'WebinoImageThumb',
         'VisoftBaseModule',
-        // 'VisoftMailerModule',
+        'VisoftMailerModule',
         'TinyCRM'
     ),
 

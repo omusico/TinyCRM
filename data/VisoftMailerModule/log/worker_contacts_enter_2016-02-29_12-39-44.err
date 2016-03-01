@@ -1,0 +1,9 @@
+PHP Fatal error:  Uncaught exception 'Exception' with message 'Resource VisoftMailerModule\Controller\Contact not defined in ACL' in /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-base-module/Module.php:193
+Stack trace:
+#0 [internal function]: VisoftBaseModule\Module->onRoute(Object(Zend\Mvc\MvcEvent))
+#1 /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php(490): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#2 /var/www/html/tinycrm/vendor/zendframework/zend-eventmanager/src/EventManager.php(214): Zend\EventManager\EventManager->triggerListeners('route', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#3 /var/www/html/tinycrm/vendor/zendframework/zend-mvc/src/Application.php(297): Zend\EventManager\EventManager->trigger('route', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#4 /var/www/html/tinycrm/public/index.php(21): Zend\Mvc\Application->run()
+#5 {main}
+  thrown in /var/www/html/tinycrm/vendor/vadimizmalkov/visoft-base-module/Module.php on line 193

@@ -5,11 +5,9 @@ namespace TinyCRM\Form;
 use Doctrine\ORM\EntityManager,
 	DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
-use VisoftBaseModule\Form\BaseForm;
-
-class UserForm extends BaseForm
+class UserForm extends \VisoftBaseModule\Form\BaseForm
 {
-	public function __construct($entityManager, $formType, $identity)
+	public function __construct($entityManager, $formType, $identity = null)
 	{
 		parent::__construct($entityManager);
         $this->setHydrator(new DoctrineHydrator($entityManager));
@@ -19,9 +17,12 @@ class UserForm extends BaseForm
             case 'create':
                 $this->setCreateForm('Register new employee');
                 break;
-            // case 'edit':
-            //     $this->setLayoutV1Form('Edit layout v.1');
-            //     break;
+            case 'edit':
+                $this->setEditForm('Register employee profile data');
+                break;
+            case 'password-reset':
+                $this->setPasswordResetForm('Reset password');
+                break;
             default:
                 # code...
                 break;
@@ -37,13 +38,59 @@ class UserForm extends BaseForm
 
         $this->addText(
             $name = 'fullName', 
-            $label = 'Full name ', 
+            $label = 'Full name', 
             $labelClass = 'col-sm-2 control-label',
             $id = null,
             $required = false,
             $placeholder = 'Full name'
         );
+
+        $this->addText(
+            $name = 'email', 
+            $label = 'Email', 
+            $labelClass = 'col-sm-2 control-label',
+            $id = null,
+            $required = false,
+            $placeholder = 'Email'
+        );
+
+        $this->addPassword(
+            $name = 'password', 
+            $label = 'Password', 
+            $labelClass = 'col-sm-2 control-label',
+            $id = null,
+            $required = false,
+            $placeholder = 'Password'
+        );
+
+        $this->addSelectRole(
+            $name = 'role',
+            $labelClass = 'col-sm-2 control-label'
+        );
         
+        $this->addSubmit(
+            $name = 'submit', 
+            $value = 'Save', 
+            $class = 'btn btn-info'
+        );
+    }
+
+    public function setEditForm($title) 
+    {
+        $this->setCreateForm($title);
+    }
+
+    public function setPasswordResetForm($title) 
+    {
+        $this->addPassword(
+            $name = 'password', 
+            $label = 'New password', 
+            $labelClass = 'col-sm-2 control-label',
+            $id = null,
+            $required = false,
+            $placeholder = 'New password'
+        );
+
         $this->addSubmit(
             $name = 'submit', 
             $value = 'Save', 
