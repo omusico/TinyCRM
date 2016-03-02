@@ -101,8 +101,10 @@ class ContactsController extends \VisoftBaseModule\Controller\AbstractCrudContro
         $scheme = $this->request->getHeader('Referer')->uri()->getScheme();
         $host = $this->request->getHeader('Referer')->uri()->getHost();
         $path = $this->request->getHeader('Referer')->uri()->getPath();
+        $port = $this->request->getHeader('Referer')->uri()->getPort();
+        $port = is_null($port) ? null : ':' . $port;
         $query = $this->request->getHeader('Referer')->uri()->getQuery();
-        $redirectUrl = $scheme . '://' . $host . $path . '?' . $query;
+        $redirectUrl = $scheme . '://' . $host  . $port . $path . '?' . $query;
         return $this->redirect()->toUrl($redirectUrl);
     }
 }
