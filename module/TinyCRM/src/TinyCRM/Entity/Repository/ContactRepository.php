@@ -23,7 +23,7 @@ class ContactRepository extends \VisoftMailerModule\Entity\Repository\ContactRep
     //     return $queryBuilder->getQuery()->getResult();
     // }
 
-    public function findByDate($date, $identity)
+    public function findByDate($date, $identity, $state)
     {
         // var_dump($date->format('Y-m-d') . '%');
         // die('ddd');
@@ -32,7 +32,9 @@ class ContactRepository extends \VisoftMailerModule\Entity\Repository\ContactRep
             ->select('contact')
             ->where('contact.manager = :managerId')
             ->andWhere('contact.time LIKE :date')
+            ->andWhere('contact.state = :stateId')
             ->setParameter('managerId', $identity->getId())
+            ->setParameter('stateId', $state->getId())
             ->setParameter('date', $date->format('Y-m-d') . '%');
         return $queryBuilder->getQuery()->getResult();
     }
@@ -41,7 +43,7 @@ class ContactRepository extends \VisoftMailerModule\Entity\Repository\ContactRep
     {
         $queryBuilder = $this->createQueryBuilder('contact');
         $queryBuilder
-            ->select('contact.id', 'contact.fullName', 'contact.phone', 'contact.email')
+            ->select('contact.id', 'contact.fullName', 'contact.phone', 'contact.email', 'contact.comment')
             ->leftJoin('contact.databases', 'databases')
             ->add('where', $queryBuilder->expr()->in('databases', $databaseIds));
         return $queryBuilder->getQuery()->getResult();

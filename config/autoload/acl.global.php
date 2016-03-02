@@ -57,7 +57,7 @@ return array(
                     'all' => ['administrator', 'manager'],
                 ],
                 'TinyCRM\Controller\Managers' => [
-                    'all' => ['administrator', 'manager'],
+                    'all' => 'administrator',
                 ],
                 'TinyCRM\Controller\Contacts' => [
                     'all' => ['administrator', 'manager'],

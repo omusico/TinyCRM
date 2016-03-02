@@ -1,0 +1,39 @@
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-1 text-center">Action</th>
+            <th class="col-md-2">Contact</th>
+            <th class="col-md-3">Info</th>
+            <th class="col-md-5">Comment</th>
+        </tr>
+        <?php 
+        foreach ($contactsToll2 as $contact): 
+            $editContactUrl = $this->url('tiny-crm/default', [
+                'controller' => 'contacts', 
+                'action' => 'edit',
+                'entityId' => $contact->getId(),
+            ]);
+
+            // $time = empty($contact->getTime()) ? null : $contact->getTime()->format('Y/m/d H:i');
+        ?>
+        <tr>
+            <td><?php echo $contact->getId(); ?></td>
+            <td class="text-center">
+                <?php echo $this->partial('tiny-crm/databases/partials/action-button', [
+                    'contact' => $contact,
+                    'editCommentForm' => $editCommentForm,
+                    'moveScheduleForm' => $moveScheduleForm,
+                    'closedForm' => $closedForm
+                ]); ?>
+            </td>
+            <td><a href="<?php echo $editContactUrl; ?>"?><?php echo $contact->getFullName(); ?></td>
+            <td>
+                <?php echo $contact->getPhone(); ?><br>
+                <small><?php echo $contact->getEmail(); ?></small>
+            </td>
+            <td><?php echo $contact->getComment(); ?></td>
+        </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>

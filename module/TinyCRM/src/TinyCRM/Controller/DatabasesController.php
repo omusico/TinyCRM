@@ -33,8 +33,36 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                 return $viewModel;
                 break;
             case 'manager':
-                $pageTitle = "Databases <small>Manage your databases</small>";
-                $contacts = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy(['manager' => $this->identity()]);
+                $pageTitle = "Your database <small>Manage your databases</small>";
+                $contactsInProgress = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy([
+                    'manager' => $this->identity(), 
+                    'time' => null,
+                    'state' => null
+                ]);
+                $closedState = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactState')->findOneBy(['name' => 'Closed']);
+                $contactsClosed = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy([
+                    'manager' => $this->identity(), 
+                    'time' => null,
+                    'state' => $closedState
+                ]);
+                $toll1State = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactState')->findOneBy(['name' => 'Toll1']);
+                $contactsToll1 = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy([
+                    'manager' => $this->identity(), 
+                    'time' => null,
+                    'state' => $toll1State
+                ]);
+                $toll2State = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactState')->findOneBy(['name' => 'Toll2']);
+                $contactsToll2 = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy([
+                    'manager' => $this->identity(), 
+                    'time' => null,
+                    'state' => $toll2State
+                ]);
+                $toll3State = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactState')->findOneBy(['name' => 'Toll3']);
+                $contactsToll3 = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy([
+                    'manager' => $this->identity(), 
+                    'time' => null,
+                    'state' => $toll3State
+                ]);
                 $viewModel = new ViewModel();
                 // transforming Databases Array
                 // foreach ($databases as $key => $database) {
@@ -46,7 +74,14 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                 // }
                 $viewModel->setVariables([
                     'pageTitle' => $pageTitle,
-                    'entities' => $contacts,
+                    'contactsInProgress' => $contactsInProgress,
+                    'contactsClosed' => $contactsClosed,
+                    'contactsToll1' => $contactsToll1,
+                    'contactsToll2' => $contactsToll2,
+                    'contactsToll3' => $contactsToll3,
+                    'moveScheduleForm' => new Form\ContactForm($this->entityManager, 'move-to-schedule', $this->identity()),
+                    'editCommentForm' => new Form\ContactForm($this->entityManager, 'edit-comment', $this->identity()),
+                    'closedForm' => new Form\ContactForm($this->entityManager, 'closed', $this->identity()),
                 ]);
 
                 $viewModel->setTemplate('tiny-crm/databases/index-' . $roleName);
@@ -68,6 +103,9 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
         	'database' => $entity,
             'contacts' => $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBySibscribedOnMailingLists($entity->getId()),
             'export-status' => $this->entityManager->getRepository('VisoftMailerModule\Entity\StatusDatabaseExport')->findOneBy(['database' => $entity->getId()], ['createdAt' => 'DESC']),
+            'moveScheduleForm' => new Form\ContactForm($this->entityManager, 'move-to-schedule', $this->identity()),
+            'editCommentForm' => new Form\ContactForm($this->entityManager, 'edit-comment', $this->identity()),
+            'closedForm' => new Form\ContactForm($this->entityManager, 'closed', $this->identity()),
         ]);
     }
 
@@ -144,7 +182,7 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
             return new JsonModel([
                 'statusId' => $status->getId(),
                 'dateTimeCreated' => $status->getCreatedAt()->format('d-m-Y'),
-                'city' => $status->getMailingList()->getName(),
+                'city' => $status->getDatabase()->getName(),
             ]);
         }
     }

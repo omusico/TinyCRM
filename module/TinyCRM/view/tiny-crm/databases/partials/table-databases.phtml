@@ -51,11 +51,10 @@
                 <td><a href="<?php echo $viewUrl; ?>"?><?php echo $database['entity']->getName(); ?></td>
                 <td><?php echo $database['count']; ?></td>
                 <td id="export-database-<?php echo $database['entity']->getId(); ?>" data-update-state-export-url="<?php echo $updateStateExportUrl; ?>" data-download-csv-url="<?php echo $downloadCsvUrl; ?>" data-update-export-url="<?php echo $updateExportUrl; ?>">
-                    <a href="<?php echo $downloadCsvUrl; ?>">Download</a>
-                    <br>
+                    <a href="<?php echo $downloadCsvUrl; ?>">Download</a><br>
                     <small>
                         <?php //var_dump($database['export-status']); ?>
-                        <?php //echo $database['export-status']->getCreatedAt()->format("m/d/y H:i:s"); ?>
+                        <?php echo "From: " . $database['export-status']->getFinishedAt()->format('d/m/Y H:i'); ?>
                         <a href="javascript:updateExport('<?php echo $database['entity']->getId(); ?>')"><i class="fa fa-refresh"></i></a>
                     </small>
                 </td>

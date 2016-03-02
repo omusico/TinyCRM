@@ -1,0 +1,30 @@
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-3">Contact</th>
+            <th class="col-md-3">Info</th>
+            <th class="col-md-5">Comment</th>
+        </tr>
+        <?php 
+        foreach ($contacts as $contact): 
+            $editContactUrl = $this->url('tiny-crm/default', [
+                'controller' => 'contacts', 
+                'action' => 'edit',
+                'entityId' => $contact['id'],
+            ]);
+
+            // $time = empty($contact->getTime()) ? null : $contact->getTime()->format('Y/m/d H:i');
+        ?>
+        <tr>
+            <td><?php echo $contact['id']; ?></td>
+            <td><a href="<?php echo $editContactUrl; ?>"?><?php echo $contact['fullName']; ?></td>
+            <td>
+                <?php echo $contact['phone']; ?><br>
+                <small><?php echo $contact['email']; ?></small>
+            </td>
+            <td><?php echo $contact['comment']; ?></td>
+        </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>

@@ -2142,12 +2142,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/VadimIzmalkov/VisoftMailerModule.git",
-                "reference": "3eac0bc1fd046453552883203c7d57c99995c0b3"
+                "reference": "cd3fc807d8e3ca3edb469bac4cb3eaff001389f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftMailerModule/zipball/3eac0bc1fd046453552883203c7d57c99995c0b3",
-                "reference": "3eac0bc1fd046453552883203c7d57c99995c0b3",
+                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftMailerModule/zipball/cd3fc807d8e3ca3edb469bac4cb3eaff001389f7",
+                "reference": "cd3fc807d8e3ca3edb469bac4cb3eaff001389f7",
                 "shasum": ""
             },
             "require": {
@@ -2179,7 +2179,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2016-03-01 02:36:16"
+            "time": "2016-03-02 02:19:04"
         },
         {
             "name": "webino/webino-image-thumb",
@@ -4204,27 +4204,27 @@
         },
         {
             "name": "zendframework/zend-progressbar",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-progressbar.git",
-                "reference": "6f7784c9a6d7ea3198fa36aba1d28e6b9188832c"
+                "reference": "0723a1f5f7c3f90cdde80ea68cb781e099c770bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-progressbar/zipball/6f7784c9a6d7ea3198fa36aba1d28e6b9188832c",
-                "reference": "6f7784c9a6d7ea3198fa36aba1d28e6b9188832c",
+                "url": "https://api.github.com/repos/zendframework/zend-progressbar/zipball/0723a1f5f7c3f90cdde80ea68cb781e099c770bc",
+                "reference": "0723a1f5f7c3f90cdde80ea68cb781e099c770bc",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.23",
-                "zendframework/zend-stdlib": "~2.5"
+                "php": "^5.5 || ^7.0",
+                "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "1.7.*",
                 "phpunit/phpunit": "~4.0",
-                "zendframework/zend-json": "~2.5",
-                "zendframework/zend-session": "~2.5"
+                "zendframework/zend-json": "^2.6.1",
+                "zendframework/zend-session": "^2.6.2"
             },
             "suggest": {
                 "zendframework/zend-json": "Zend\\Json component",
@@ -4252,7 +4252,7 @@
                 "progressbar",
                 "zf2"
             ],
-            "time": "2015-06-03 15:32:02"
+            "time": "2016-03-01 23:11:07"
         },
         {
             "name": "zendframework/zend-serializer",
@@ -4628,16 +4628,16 @@
         },
         {
             "name": "zendframework/zend-test",
-            "version": "2.5.2",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-test.git",
-                "reference": "1d91603556b678b9c7962c1d7c8b74366a95db5b"
+                "reference": "e9c0a570d5519a85a4b15a58c30fbc04a33c45f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-test/zipball/1d91603556b678b9c7962c1d7c8b74366a95db5b",
-                "reference": "1d91603556b678b9c7962c1d7c8b74366a95db5b",
+                "url": "https://api.github.com/repos/zendframework/zend-test/zipball/e9c0a570d5519a85a4b15a58c30fbc04a33c45f5",
+                "reference": "e9c0a570d5519a85a4b15a58c30fbc04a33c45f5",
                 "shasum": ""
             },
             "require": {
@@ -4683,7 +4683,7 @@
                 "test",
                 "zf2"
             ],
-            "time": "2015-12-09 16:17:52"
+            "time": "2016-03-01 20:28:49"
         },
         {
             "name": "zendframework/zend-text",

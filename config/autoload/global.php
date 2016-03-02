@@ -15,14 +15,24 @@ return [
 	'navigation' => [
 		'tiny-crm' => [
 			[
-				'label' => '<i class="fa fa-users"></i> Managers',
+				'label' => '<i class="fa fa-tachometer"></i> <span>Dashboard</span>',
 				'route' => 'tiny-crm/default',
-				'controller' => 'managers',
+				'controller' => 'index',
+				// 'class' => 'treeview',
 			],
 			[
-				'label' => '<i class="fa fa-database"></i> Databases',
+				'label' => '<i class="fa fa-users"></i> <span>Managers</span>',
+				'route' => 'tiny-crm/default',
+				'controller' => 'managers',
+				'resource' => 'TinyCRM\Controller\Managers',
+				'privilege' => 'index',
+				// 'class' => 'treeview',
+			],
+			[
+				'label' => '<i class="fa fa-database"></i> <span>Databases</span>',
 				'route' => 'tiny-crm/default',
 				'controller' => 'databases',
+				// 'class' => 'treeview',
 			],
 		],
 	],

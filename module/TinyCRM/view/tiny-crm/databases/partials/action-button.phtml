@@ -1,0 +1,180 @@
+<?php
+$contactId = is_array($contact) ? $contact['id'] : $contact->getId();
+$toll1Url = $this->url('tiny-crm/default', [
+    'controller' => 'contacts', 
+    'action' => 'toll',
+    'entityId' => $contactId,
+],[ 'query' => [
+        'state' => 'Toll1',
+    ]
+]);
+$toll2Url = $this->url('tiny-crm/default', [
+    'controller' => 'contacts', 
+    'action' => 'toll'
+    ,'entityId' => $contactId,
+],[ 'query' => [
+        'state' => 'Toll2',
+    ]
+]);
+$toll3Url = $this->url('tiny-crm/default', [
+    'controller' => 'contacts', 
+    'action' => 'toll',
+    'entityId' => $contactId,
+],[ 'query' => [
+        'state' => 'Toll3',
+    ]
+]);
+?>
+<div class="btn-group">
+    <!-- <button type="button" class="btn btn-xs btn-warning btn-flat">Action</button> -->
+    <button aria-expanded="true" type="button" class="btn btn-xs btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="#" data-toggle="modal" data-target="#moveScheduleModal-<?php echo $contactId; ?>">Move on schedule</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#editCommentModal-<?php echo $contactId; ?>">Edit comment</a></li>
+        <li class="divider"></li>
+        <li><a href="#" data-toggle="modal" data-target="#closedModal-<?php echo $contactId; ?>">Closed</a></li>
+        <li><a href="<?php echo $toll1Url; ?>">Toll 1</a></li>
+        <li><a href="<?php echo $toll2Url; ?>">Toll 2</a></li>
+        <li><a href="<?php echo $toll3Url; ?>">Toll 3</a></li>
+        <!-- <li class="divider"></li>
+        <li><a href="#">Separated link</a></li> -->
+    </ul>
+</div>
+ <!-- Modal -->
+<div class="modal fade" id="moveScheduleModal-<?php echo $contactId; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo $moveScheduleForm->getTitle(); ?></h4>
+            </div>
+            <?php 
+            $moveScheduleForm->setAttribute('action', $this->url('tiny-crm/default', [
+                'controller' => 'contacts', 
+                'action' => 'move-schedule', 
+                'entityId' => $contactId]));
+            $moveScheduleForm->get('time')->setAttribute('id', 'datetimepicker' . $contactId);
+            $moveScheduleForm->prepare();
+            ?>
+            <?php echo $this->form()->openTag($moveScheduleForm); ?>
+            <div class="modal-body">
+                
+                <div class="box-body">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($moveScheduleForm->get('time')); ?>
+                        <div class="col-sm-10">
+                            <?php echo $this->formInput($moveScheduleForm->get('time')); ?>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <?php echo $this->formSubmit($moveScheduleForm->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($moveScheduleForm); ?>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editCommentModal-<?php echo $contactId; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo $editCommentForm->getTitle(); ?></h4>
+            </div>
+            <?php 
+            $editCommentForm->setAttribute('action', $this->url('tiny-crm/default', [
+                'controller' => 'contacts', 
+                'action' => 'edit-comment', 
+                'entityId' => $contactId])); 
+            $editCommentForm->prepare();
+            $comment = is_array($contact) ? $contact['comment'] : $contact->getComment();
+            $editCommentForm->get('comment')->setValue($comment);
+            ?>
+            <?php echo $this->form()->openTag($editCommentForm); ?>
+            <div class="modal-body">
+                
+                <div class="box-body">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($editCommentForm->get('comment')); ?>
+                        <div class="col-sm-10">
+                            <?php echo $this->formTextarea($editCommentForm->get('comment')); ?>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <?php echo $this->formSubmit($editCommentForm->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($editCommentForm); ?>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="closedModal-<?php echo $contactId; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo $closedForm->getTitle(); ?></h4>
+            </div>
+            <?php 
+            $closedForm->setAttribute('action', $this->url('tiny-crm/default', [
+                'controller' => 'contacts', 
+                'action' => 'closed', 
+                'entityId' => $contactId])); 
+            $closedForm->prepare();
+            ?>
+            <?php echo $this->form()->openTag($closedForm); ?>
+            <div class="modal-body">
+                
+                <div class="box-body">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($closedForm->get('closedAmount')); ?>
+                        <div class="col-sm-10">
+                            <?php echo $this->formInput($closedForm->get('closedAmount')); ?>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <?php echo $this->formSubmit($closedForm->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($closedForm); ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+// $(document).ready(function(){
+    var id = <?php echo json_encode($contactId); ?>;
+    console.log('#datetimepicker' + id);
+    jQuery('#datetimepicker' + id).datetimepicker({
+        // formatTime:'H:i',
+        // minTime:'08:00',
+        // // maxTime:'19:00',
+        step: 15,
+        // minTime:'8:00',
+        // maxTime:'19:00',
+        // timeFormat: 'HH:mm',
+        // hourMin: 8,
+    });
+// });
+</script>

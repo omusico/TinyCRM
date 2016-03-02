@@ -90,6 +90,25 @@ class Contact implements \VisoftMailerModule\Entity\ContactInterface
      */
     protected $time;
 
+    /**
+     * @var string
+     * @ORM\Column(name="comment", type="text", nullable=true)
+     */
+    protected $comment;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="closed_time", type="datetime", nullable=true)
+     */
+    protected $closedTime;
+
+    /**
+     * @var integer
+     * @ORM\Column(name="cash_amount", type="integer", nullable=true)
+     */
+    protected $closedAmount;
+
+
     public function __construct() {
         $this->token = md5(uniqid(mt_rand(), true));
         $this->createdAt = new \DateTime();
@@ -119,6 +138,15 @@ class Contact implements \VisoftMailerModule\Entity\ContactInterface
 
     public function getTime() { return $this->time; }
     public function setTime($time) { $this->time = $time; }
+
+    public function getComment() { return $this->comment; }
+    public function setComment($comment) { $this->comment = $comment; }
+
+    public function getClosedTime() { return $this->closedTime; }
+    public function setClosedTime($closedTime) { $this->closedTime = $closedTime; }
+
+    public function getClosedAmount() { return $this->closedAmount; }
+    public function setClosedAmount($closedAmount) { $this->closedAmount = $closedAmount; }
 
 	public function getCreatedBy() {  return $this->createdBy; }
 	public function setCreatedBy(\VisoftBaseModule\Entity\UserInterface $user) { $this->createdBy = $user; }

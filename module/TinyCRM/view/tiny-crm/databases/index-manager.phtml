@@ -18,7 +18,37 @@ $flashMessenger = $this->flashMessenger()->setMessageOpenFormat('<div%s><button 
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <?php echo $this->partial('tiny-crm/databases/partials/table-contacts'); ?>
+            <div style="cursor: move;" class="nav-tabs-custom">
+                <!-- Tabs within a box -->
+                <ul class="nav nav-tabs pull-right ui-sortable-handle">
+
+                    <li class="active"><a href="#inprogress" data-toggle="tab">In progress</a></li>
+                    <li><a href="#toll1" data-toggle="tab">Toll1</a></li>
+                    <li><a href="#toll2" data-toggle="tab">Toll2</a></li>
+                    <li><a href="#toll3" data-toggle="tab">Toll3</a></li>
+                    <li><a href="#closed" data-toggle="tab">Closed</a></li>
+
+                    <li class="pull-left header"><i class="fa fa-inbox"></i> Contacts</li>
+                </ul>
+                <div class="tab-content no-padding">
+                      <!-- Morris chart - Sales -->
+                    <div id="inprogress" class="chart tab-pane active">
+                        <?php echo $this->partial('tiny-crm/databases/partials/table-contacts-inprogress'); ?>
+                    </div>
+                    <div id="closed" class="chart tab-pane">
+                        <?php echo $this->partial('tiny-crm/databases/partials/table-contacts-closed'); ?>
+                    </div>
+                    <div id="toll1" class="chart tab-pane">
+                        <?php echo $this->partial('tiny-crm/databases/partials/table-contacts-toll1'); ?>
+                    </div>
+                    <div id="toll2" class="chart tab-pane">
+                        <?php echo $this->partial('tiny-crm/databases/partials/table-contacts-toll2'); ?>
+                    </div>
+                    <div id="toll3" class="chart tab-pane">
+                        <?php echo $this->partial('tiny-crm/databases/partials/table-contacts-toll3'); ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

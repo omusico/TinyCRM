@@ -20,6 +20,15 @@ class ContactForm extends \VisoftBaseModule\Form\BaseForm
             case 'edit':
                 $this->setEditForm('Edit contact data');
                 break;
+            case 'move-to-schedule':
+                $this->setMoveScheduleForm('Move contact to schedule');
+                break;
+            case 'edit-comment':
+                $this->setEditCommentForm('Edit comment');
+                break;
+            case 'closed':
+                $this->setClosedForm('Amount of deal');
+                break;
             default:
                 # code...
                 break;
@@ -79,6 +88,8 @@ class ContactForm extends \VisoftBaseModule\Form\BaseForm
 
     public function setPasswordResetForm($title) 
     {
+        $this->setTitle($title);
+
         $this->addPassword(
             $name = 'password', 
             $label = 'New password', 
@@ -91,6 +102,58 @@ class ContactForm extends \VisoftBaseModule\Form\BaseForm
         $this->addSubmit(
             $name = 'submit', 
             $value = 'Save', 
+            $class = 'btn btn-info'
+        );
+    }
+
+    public function setMoveScheduleForm($title)
+    {
+        $this->setTitle($title);
+        $this->addText(
+            $name = 'time', 
+            $label = 'Time', 
+            $labelClass = 'col-sm-2 control-label',
+            $id = 'datetimepicker',
+            $required = false,
+            $placeholder = 'Select date and time you want to move'
+        );
+        $this->addSubmit(
+            $name = 'submit', 
+            $value = 'Move', 
+            $class = 'btn btn-info'
+        );
+    }
+
+    public function setEditCommentForm($title)
+    {
+        $this->setTitle($title);
+        $this->addTextarea(
+            $name = 'comment', 
+            $label = 'Comment',
+            $labelClass = 'col-sm-2 control-label'
+        );
+        $this->addSubmit(
+            $name = 'submit', 
+            $value = 'Update', 
+            $class = 'btn btn-info'
+        );
+    }
+
+    public function setClosedForm($title)
+    {
+        $this->setTitle($title);
+
+        $this->addText(
+            $name = 'closedAmount', 
+            $label = 'Amount', 
+            $labelClass = 'col-sm-2 control-label',
+            $id = 'null',
+            $required = false,
+            $placeholder = 'Amount of deal'
+        );
+        $this->addSubmit(
+            $name = 'submit', 
+            $value = 'Close', 
             $class = 'btn btn-info'
         );
     }
