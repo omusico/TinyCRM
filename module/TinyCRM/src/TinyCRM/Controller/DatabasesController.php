@@ -34,11 +34,11 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                 break;
             case 'manager':
                 $pageTitle = "Your database <small>Manage your databases</small>";
-                $leadState = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactState')->findOneBy(['name' => 'Lead']);
+                $state = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactState')->findOneBy(['name' => 'Pending']);
                 $contactsInProgress = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy([
                     'manager' => $this->identity(), 
                     'time' => null,
-                    'state' => $leadState
+                    'state' => $state
                 ]);
                 $closedState = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactState')->findOneBy(['name' => 'Closed']);
                 $contactsClosed = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy([
