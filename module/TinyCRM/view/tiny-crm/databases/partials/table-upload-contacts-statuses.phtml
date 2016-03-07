@@ -12,7 +12,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <?php if (empty($entities)): ?>
+        <?php if (empty($statuses)): ?>
             No logs yet.
         <?php else: ?>
         <table class="table table-hover table-upload-contacts-statuses" id="statuses-table">
@@ -36,7 +36,7 @@
                     $databases = $status->getDatabases();
                 ?>
                 <tr id="status-id-<?php echo $status->getId(); ?>" class="table-item">
-                    <td><?php echo $status->getCreatedAt()->format('d M @ H:i'); ?></td>
+                    <td><?php echo is_null($status->getFinishedAt()) ? 'In progress' : $status->getFinishedAt()->format('d M @ H:i'); ?></td>
                     <td>
                     <?php 
                     foreach ($databases as $database) {

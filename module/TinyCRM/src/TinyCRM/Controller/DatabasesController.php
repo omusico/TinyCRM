@@ -32,7 +32,7 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                 $viewModel->setVariables([
                     'pageTitle' => $pageTitle,
                     'entities' => $databases,
-                    'statuses' => $this->entityManager->getRepository('VisoftMailerModule\Entity\StatusContactEnter')->findBy([], ['startedAt' => 'DESC']),
+                    'statuses' => $this->entityManager->getRepository('VisoftMailerModule\Entity\StatusContactEnter')->findBy([], ['createdAt' => 'DESC']),
                     'searchForm' => $searchForm,
                 ]);
 
@@ -191,8 +191,8 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                 $this->flashMessenger()->addSuccessMessage('Uploading started in background');
                 return $this->redirect()->toRoute('tiny-crm/default', [
                     'controller' => 'databases', 
-                    'action' => 'view', 
-                    'entityId' => $this->getEntity()->getId()
+                    'action' => 'index', 
+                    // 'entityId' => $this->getEntity()->getId()
                 ]);
             }
         }
