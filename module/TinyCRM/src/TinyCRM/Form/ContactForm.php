@@ -29,6 +29,9 @@ class ContactForm extends \VisoftBaseModule\Form\BaseForm
             case 'closed':
                 $this->setClosedForm('Amount of deal');
                 break;
+            case 'search':
+                $this->setSearchForm('Search on contacts');
+                break;
             default:
                 # code...
                 break;
@@ -147,13 +150,32 @@ class ContactForm extends \VisoftBaseModule\Form\BaseForm
             $name = 'closedAmount', 
             $label = 'Amount', 
             $labelClass = 'col-sm-2 control-label',
-            $id = 'null',
+            $id = null,
             $required = false,
             $placeholder = 'Amount of deal'
         );
         $this->addSubmit(
             $name = 'submit', 
             $value = 'Close', 
+            $class = 'btn btn-info'
+        );
+    }
+
+    public function setSearchForm($title)
+    {
+        $this->setTitle($title);
+        $this->setAttribute('method', 'get');
+        $this->addText(
+            $name = 'search', 
+            $label = 'Search', 
+            $labelClass = 'col-sm-2 control-label',
+            $id = null,
+            $required = true,
+            $placeholder = 'Type here name, phone or email. Min 3 char'
+        );
+        $this->addSubmit(
+            $name = 'submit', 
+            $value = 'Search', 
             $class = 'btn btn-info'
         );
     }

@@ -73,7 +73,7 @@ var TinyCRM = function() {
 	}
 
 	return {
-		initDatabasesInit: function() {
+		initDatabasesTable: function() {
 			handleDatabasesTable();
 		},
 	}

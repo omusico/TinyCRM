@@ -7,11 +7,15 @@
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            // ->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
+            ->appendHttpEquiv('Content-Type', 'text/html; charset=CP1251')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ; ?>
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+            // Tiny CRM custom styles
+            ->prependStylesheet($this->basePath('/assets/css/tiny-crm.css'))
             // Custom css for datepicker http://www.hongkiat.com/blog/jquery-ui-datepicker/
             ->prependStylesheet($this->basePath('/assets/css/datepicker.css'))
             // Admin LTE

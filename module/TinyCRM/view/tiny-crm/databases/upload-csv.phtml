@@ -1,12 +1,17 @@
+<?php
+$downloadCsvExample = $this->url('tiny-crm/default', [
+    'controller' => 'databases',
+    'action' => 'download-csv-example'
+]);
+?>
 <section class="content-header">
     <h1><?php echo $pageTitle; ?></h1>
-    <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Layout</a></li>
-        <li class="active">Fixed</li>
-    </ol> -->
 </section>
 <section class="content">
+	<div class="callout callout-info">
+      	<h4>Example of CSV file</h4>
+      	<p><a href="<?php echo $downloadCsvExample; ?>">Here</a> is a sample CSV file to help structure your contact list.</p>
+    </div>
     <div class="row">
         <div class="col-xs-12">
         	<?php echo $this->partial('tiny-crm/databases/partials/form-upload-csv'); ?>

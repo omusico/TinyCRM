@@ -63,4 +63,30 @@ class ContactRepository extends \VisoftMailerModule\Entity\Repository\ContactRep
     {
         return null;
     }
+
+    public function search($searchBy) 
+    {
+        $queryBuilder = $this->createQueryBuilder('contact');
+        $queryBuilder
+            ->select('contact')
+            ->where('contact.fullName LIKE :string1')
+            ->orWhere('contact.phone LIKE :string2')
+            ->orWhere('contact.email LIKE :string3')
+            ->setParameter('string1', '%' . $searchBy . '%')
+            ->setParameter('string2', '%' . $searchBy . '%')
+            ->setParameter('string3', '%' . $searchBy . '%');
+        return  $queryBuilder->getQuery()->getResult();
+
+        // $em = $this->getEntityManager();
+        // $qb = $em->createQueryBuilder(); 
+        // $qb->select('user')
+        //     ->from( 'Admin\Entity\User',  'user')
+        //     // ->where('user.email LIKE LIKE ?', '%' . $searchBy . '%')
+        //     ->where('user.email LIKE :string1')
+        //     // ->orWhere('user.fullName LIKE ?', '%' . $searchBy . '%')
+        //     ->orWhere('user.fullName LIKE :string2')
+        //     ->setParameter('string1', '%' . $searchBy . '%')
+        //     ->setParameter('string2', '%' . $searchBy . '%');
+        // return  $qb->getQuery()->getResult();
+    }
 }

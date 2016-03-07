@@ -1,20 +1,32 @@
 <?php 
-
+$createDatabaseUrl = $this->url('tiny-crm/default', [
+    'controller' => 'databases', 
+    'action' => 'create'
+]);
+$searchForm->prepare();
+$searchForm->get('search')->setAttribute('class', 'form-control pull-right');
 ?>
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Database</h3>
-        <!-- <div class="box-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-                <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
+        <div class="box-tools">
+            <?php echo $this->form()->openTag($searchForm); ?>
+            <div class="input-group input-group-sm" style="width: 300px;">
+                <!-- <input name="table_search" class="form-control pull-right" placeholder="Search" type="text"> -->
+                <?php echo $this->formInput($this->searchForm->get('search')); ?>
                 <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <!-- <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button> -->
+                    <?php echo $this->formInput($this->searchForm->get('submit')); ?>
                 </div>
             </div>
-        </div> -->
+            <?php echo $this->form()->closeTag($searchForm); ?>
+        </div>
     </div>
     <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
+    <div class="box-body">
+        <?php if (empty($entities)): ?>
+            No databases yet. <a href="<?php echo $createDatabaseUrl; ?>">Create</a> one first.
+        <?php else: ?>
         <table class="table table-hover" id="contacts-table">
             <thead><tr>
                 <th>ID</th>
@@ -45,13 +57,20 @@
                     'action' => 'download-csv',
                     'entityId' => $database['entity']->getId(),
                 ]);
+                $uploadCsvUrl = $this->url('tiny-crm/default', [
+                    'controller' => 'databases', 
+                    'action' => 'upload-csv',
+                    'entityId' => $database['entity']->getId(),
+                ]);
             ?>
             <tr id="<?php echo $database['entity']->getId(); ?>" class="table-item">
                 <td><?php echo $database['entity']->getId(); ?></td>
                 <td><a href="<?php echo $viewUrl; ?>"?><?php echo $database['entity']->getName(); ?></td>
                 <td><?php echo $database['count']; ?></td>
                 <td id="export-database-<?php echo $database['entity']->getId(); ?>" data-update-state-export-url="<?php echo $updateStateExportUrl; ?>" data-download-csv-url="<?php echo $downloadCsvUrl; ?>" data-update-export-url="<?php echo $updateExportUrl; ?>">
-                    <?php if(!empty($database['export-status'])): ?>
+                    <?php if($database['count'] == 0): ?>
+                        No contacts uploaded. <a href="<?php echo $uploadCsvUrl; ?>">Upload</a> CSV file.
+                    <?php elseif(!empty($database['export-status'])): ?>
                     <a href="<?php echo $downloadCsvUrl; ?>">Download</a><br>
                     <small>
                         <?php echo "From: " . $database['export-status']->getFinishedAt()->format('d/m/Y H:i'); ?>
@@ -64,12 +83,13 @@
             </tr>
             <?php endforeach ?>
         </tbody></table>
+        <?php endif; ?>
     </div>
     <!-- /.box-body -->
 </div>
 <!-- /.box -->
 <script type="text/javascript">
 jQuery(document).ready(function() {
-    TinyCRM.initDatabasesInit();
+    TinyCRM.initDatabasesTable();
 });
 </script>

@@ -1,14 +1,4 @@
 <?php
-$uploadCsvUrl = $this->url('tiny-crm/default', [
-    'controller' => 'databases', 
-    'action' => 'upload-csv',
-    'entityId' => $database->getId(),
-]);
-$downloadCsvUrl = $this->url('tiny-crm/default', [
-    'controller' => 'databases',
-    'action' => 'download-csv',
-    'entityId' => $database->getId(),
-]);
 $flashMessenger = $this->flashMessenger()->setMessageOpenFormat('<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>')->setMessageCloseString('</div>');
 ?>
 <section class="content-header">
@@ -23,43 +13,52 @@ $flashMessenger = $this->flashMessenger()->setMessageOpenFormat('<div%s><button 
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <a class="btn btn-app" href="<?php echo $uploadCsvUrl; ?>"><i class="fa fa-upload"></i>Upload CSV</a>
-            <!-- <a class="btn btn-app" href="<?php echo $uploadCsvUrl; ?>"><i class="fa fa-upload"></i>Uploads log</a> -->
+            <?php echo $this->partial('tiny-crm/databases/partials/form-search'); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- <a class="btn btn-app" href="<?php //echo $uploadCsvUrl; ?>"><i class="fa fa-upload"></i>Upload CSV</a> -->
+            <!-- <a class="btn btn-app" href="<?php //echo $uploadCsvUrl; ?>"><i class="fa fa-upload"></i>Uploads log</a> -->
             <!-- <a class="btn btn-app" href="<?php //echo $downloadCsvUrl; ?>"><i class="fa fa-plus"></i>Enter</a> -->
             <!-- <a class="btn btn-app" href="<?php //echo $createUrl; ?>"><i class="fa fa-refresh fa-spin"></i>Refresh</a> -->
-            <!-- <a class="btn btn-app" href="<?php echo $downloadCsvUrl; ?>"><i class="fa fa-download"></i>Download</a> -->
+            <!-- <a class="btn btn-app" href="<?php //echo $downloadCsvUrl; ?>"><i class="fa fa-download"></i>Download</a> -->
         <div class="col-xs-12">
     </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <!-- <div class="box-header">
+                <div class="box-header">
                     <h3 class="box-title">Contacts</h3>
-                    <div class="box-tools">
+                    <!-- <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
-                    </div>
-                </div> -->
+                    </div> -->
+                </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                <?php if (!empty($contacts)): ?>
-                    Comming soon...
-                <?php endif ?>
-                <?php //var_dump($contacts); die('fff'); ?>
-                    <?php //echo $this->partial('tiny-crm/databases/partials/table-contacts-administrator', [
-                        // 'contacts' => $contacts,
-                        // 'editCommentForm' => $editCommentForm,
-                        // 'moveScheduleForm' => $moveScheduleForm,
-                        // 'closedForm' => $closedForm]); 
+                    <?php //var_dump(empty($contacts)); die('fff'); ?>
+                    <?php if (empty($contacts)): ?>
+                        Nothing found...
+                    <?php else: ?>
+                    <?php echo 'Found: ' . count($contacts); ?>
+                    <div style="margin-bottom: 20px;"></div>
+                    <?php //var_dump($contacts); die('fff'); ?>
+                    <?php echo $this->partial('tiny-crm/databases/partials/table-contacts-administrator', [
+                        'contacts' => $contacts,
+                        'editCommentForm' => $editCommentForm,
+                        'moveScheduleForm' => $moveScheduleForm,
+                        'closedForm' => $closedForm]); 
                     ?>
+                    <?php endif; ?>
                 </div>
                 <!-- /.box-body -->
             </div>
           <!-- /.box -->
         </div>
-      </div>
+    </div>
 </section>

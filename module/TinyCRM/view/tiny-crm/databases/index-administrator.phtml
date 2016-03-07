@@ -17,8 +17,11 @@ $flashMessenger = $this->flashMessenger()->setMessageOpenFormat('<div%s><button 
         <div class="col-xs-12">
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-8">
             <?php echo $this->partial('tiny-crm/databases/partials/table-databases'); ?>
+        </div>
+        <div class="col-xs-4">
+            <?php echo $this->partial('tiny-crm/databases/partials/table-upload-contacts-statuses'); ?>
         </div>
     </div>
 </section>

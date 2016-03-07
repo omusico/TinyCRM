@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM,
     Doctrine\Common\Collections;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="TinyCRM\Entity\Repository\DatabaseRepository")
  * @ORM\Table(name="tiny_crm_databases")
  */
 class Database implements \VisoftMailerModule\Entity\DatabaseInterface

@@ -1051,16 +1051,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "3.2.1",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "a58f95ae76fe201b571fad3e8370a50c4368678c"
+                "reference": "fe33716763b604ade4cb442c0794f5bd5ad73004"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/a58f95ae76fe201b571fad3e8370a50c4368678c",
-                "reference": "a58f95ae76fe201b571fad3e8370a50c4368678c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/fe33716763b604ade4cb442c0794f5bd5ad73004",
+                "reference": "fe33716763b604ade4cb442c0794f5bd5ad73004",
                 "shasum": ""
             },
             "require": {
@@ -1084,7 +1084,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2.x-dev"
+                    "dev-master": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -1110,7 +1110,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-18 07:31:12"
+            "time": "2016-03-03 08:49:08"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1292,16 +1292,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.2.9",
+            "version": "5.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b12b9c37e382c096b93c3f26e7395775f59a5eea"
+                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b12b9c37e382c096b93c3f26e7395775f59a5eea",
-                "reference": "b12b9c37e382c096b93c3f26e7395775f59a5eea",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
+                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
                 "shasum": ""
             },
             "require": {
@@ -1313,7 +1313,7 @@
                 "myclabs/deep-copy": "~1.3",
                 "php": "^5.6 || ^7.0",
                 "phpspec/prophecy": "^1.3.1",
-                "phpunit/php-code-coverage": "^3.2.1",
+                "phpunit/php-code-coverage": "^3.3.0",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": ">=1.0.6",
@@ -1362,7 +1362,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-19 11:43:07"
+            "time": "2016-03-03 08:52:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2098,12 +2098,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/VadimIzmalkov/VisoftBaseModule.git",
-                "reference": "59d4e264733e7c06e044465ec95869d5aec1dc4f"
+                "reference": "def18b7075d63cf942167599302487a41800269c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftBaseModule/zipball/59d4e264733e7c06e044465ec95869d5aec1dc4f",
-                "reference": "59d4e264733e7c06e044465ec95869d5aec1dc4f",
+                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftBaseModule/zipball/def18b7075d63cf942167599302487a41800269c",
+                "reference": "def18b7075d63cf942167599302487a41800269c",
                 "shasum": ""
             },
             "require": {
@@ -2134,7 +2134,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2016-03-01 02:35:18"
+            "time": "2016-03-07 04:18:38"
         },
         {
             "name": "vadimizmalkov/visoft-mailer-module",
@@ -2142,12 +2142,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/VadimIzmalkov/VisoftMailerModule.git",
-                "reference": "cd3fc807d8e3ca3edb469bac4cb3eaff001389f7"
+                "reference": "0e68f87542d6bffc67194f30daf8c39451d12023"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftMailerModule/zipball/cd3fc807d8e3ca3edb469bac4cb3eaff001389f7",
-                "reference": "cd3fc807d8e3ca3edb469bac4cb3eaff001389f7",
+                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftMailerModule/zipball/0e68f87542d6bffc67194f30daf8c39451d12023",
+                "reference": "0e68f87542d6bffc67194f30daf8c39451d12023",
                 "shasum": ""
             },
             "require": {
@@ -2179,7 +2179,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2016-03-02 02:19:04"
+            "time": "2016-03-07 04:18:52"
         },
         {
             "name": "webino/webino-image-thumb",
@@ -4897,16 +4897,16 @@
         },
         {
             "name": "zendframework/zend-view",
-            "version": "2.6.3",
+            "version": "2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-view.git",
-                "reference": "2e635526eb4486dbe6a362b5670fa0464d22af67"
+                "reference": "5347f90525d9804de74766b29e2e723b5dd7a4c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-view/zipball/2e635526eb4486dbe6a362b5670fa0464d22af67",
-                "reference": "2e635526eb4486dbe6a362b5670fa0464d22af67",
+                "url": "https://api.github.com/repos/zendframework/zend-view/zipball/5347f90525d9804de74766b29e2e723b5dd7a4c6",
+                "reference": "5347f90525d9804de74766b29e2e723b5dd7a4c6",
                 "shasum": ""
             },
             "require": {
@@ -4929,14 +4929,14 @@
                 "zendframework/zend-i18n": "^2.6",
                 "zendframework/zend-json": "^2.6.1",
                 "zendframework/zend-log": "^2.7",
-                "zendframework/zend-modulemanager": "^2.5",
-                "zendframework/zend-mvc": "^2.6.1",
+                "zendframework/zend-modulemanager": "^2.7.1",
+                "zendframework/zend-mvc": "^2.7",
                 "zendframework/zend-navigation": "^2.5",
                 "zendframework/zend-paginator": "^2.5",
                 "zendframework/zend-permissions-acl": "^2.6",
                 "zendframework/zend-serializer": "^2.6.1",
                 "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
-                "zendframework/zend-session": "^2.5",
+                "zendframework/zend-session": "^2.6.2",
                 "zendframework/zend-uri": "^2.5"
             },
             "suggest": {
@@ -4976,7 +4976,7 @@
                 "view",
                 "zf2"
             ],
-            "time": "2016-02-22 18:24:35"
+            "time": "2016-03-02 18:43:40"
         },
         {
             "name": "zendframework/zend-xmlrpc",

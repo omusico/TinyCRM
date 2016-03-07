@@ -1,0 +1,7 @@
+.table-upload-contacts-statuses tbody > tr > td {
+	vertical-align: middle;
+}
+.table-upload-contacts-statuses td:nth-child(3) { 
+	font-size: 12px;
+	margin: 0;
+}

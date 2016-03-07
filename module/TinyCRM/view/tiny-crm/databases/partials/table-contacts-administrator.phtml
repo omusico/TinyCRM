@@ -8,22 +8,26 @@
         </tr>
         <?php 
         foreach ($contacts as $contact): 
+            $contactId = is_array($contact) ? $contact['id'] : $contact->getId();
+            $contactFullName = is_array($contact) ? $contact['fullName'] : $contact->getFullName();
+            $contactPhone = is_array($contact) ? $contact['phone'] : $contact->getPhone();
+            $contactEmail = is_array($contact) ? $contact['email'] : $contact->getEmail();
+            $contactComment = is_array($contact) ? $contact['comment'] : $contact->getComment();
+
             $editContactUrl = $this->url('tiny-crm/default', [
                 'controller' => 'contacts', 
                 'action' => 'edit',
-                'entityId' => $contact['id'],
+                'entityId' => $contactId,
             ]);
-
-            // $time = empty($contact->getTime()) ? null : $contact->getTime()->format('Y/m/d H:i');
         ?>
         <tr>
-            <td><?php echo $contact['id']; ?></td>
-            <td><a href="<?php echo $editContactUrl; ?>"?><?php echo $contact['fullName']; ?></td>
+            <td><?php echo $contactId; ?></td>
+            <td><a href="<?php echo $editContactUrl; ?>"?><?php echo $contactFullName; ?></td>
             <td>
-                <?php echo $contact['phone']; ?><br>
-                <small><?php echo $contact['email']; ?></small>
+                <?php echo $contactPhone; ?><br>
+                <small><?php echo $contactEmail; ?></small>
             </td>
-            <td><?php echo $contact['comment']; ?></td>
+            <td><?php echo $contactComment; ?></td>
         </tr>
         <?php endforeach ?>
     </tbody>

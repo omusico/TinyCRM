@@ -23,7 +23,7 @@ class DatabaseForm extends BaseForm
                 $this->setCreateForm('Create new database');
                 break;
             case 'upload-csv':
-                $this->setUploadCsvForm('Upload .csv file');
+                $this->setUploadCsvForm('Select CSV file for uploading');
                 break;
             default:
                 # code...
