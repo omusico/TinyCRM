@@ -5,9 +5,9 @@ namespace TinyCRM\Form;
 use Doctrine\ORM\EntityManager,
 	DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
-use VisoftBaseModule\Form\BaseForm;
+// use VisoftBaseModule\Form\BaseForm;
 
-class DatabaseForm extends BaseForm
+class DatabaseForm extends \TinyCRM\Form\BaseForm
 {
 	public function __construct($entityManager, $formType, $identity = null)
 	{
@@ -21,6 +21,9 @@ class DatabaseForm extends BaseForm
         switch ($formType) {
             case 'create':
                 $this->setCreateForm('Create new database');
+                break;
+            case 'edit':
+                $this->setEditForm('Edit database');
                 break;
             case 'upload-csv':
                 $this->setUploadCsvForm('Select CSV file for uploading');
@@ -43,12 +46,26 @@ class DatabaseForm extends BaseForm
             $required = false,
             $placeholder = 'Name your database'
         );
+
+        $this->addCheckbox(
+            $name = 'individual',
+            $label = 'Individual'
+        );
+
+        $this->addMultiCheckboxManagers(
+            $name = 'managers'
+        );
         
         $this->addSubmit(
             $name = 'submit', 
             $value = 'Save', 
             $class = 'btn btn-info'
         );
+    }
+
+    public function setEditForm($title)//$action)
+    {
+        $this->setCreateForm($title);
     }
 
     public function setUploadCsvForm($title)
@@ -66,4 +83,6 @@ class DatabaseForm extends BaseForm
             $class = 'btn btn-info'
         );
     }
+
+
 }

@@ -71,15 +71,10 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                     'time' => null,
                     'state' => $toll3State
                 ]);
+
+                $databasesAvailable = $this->entityRepository->findAvailable($this->identity());
+
                 $viewModel = new ViewModel();
-                // transforming Databases Array
-                // foreach ($databases as $key => $database) {
-                //     $databases[$key] = [
-                //         'count' => $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountByDatabaseIds($database->getId()),
-                //         'entity' => $database,
-                //         'export-status' => $this->entityManager->getRepository('VisoftMailerModule\Entity\StatusDatabaseExport')->findOneBy(['database' => $database->getId()], ['createdAt' => 'DESC']),
-                //     ];
-                // }
                 $viewModel->setVariables([
                     'pageTitle' => $pageTitle,
                     'contactsInProgress' => $contactsInProgress,
@@ -90,6 +85,7 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                     'moveScheduleForm' => new Form\ContactForm($this->entityManager, 'move-to-schedule', $this->identity()),
                     'editCommentForm' => new Form\ContactForm($this->entityManager, 'edit-comment', $this->identity()),
                     'closedForm' => new Form\ContactForm($this->entityManager, 'closed', $this->identity()),
+                    'databasesAvailable' => $databasesAvailable,
                 ]);
 
                 $viewModel->setTemplate('tiny-crm/databases/index-' . $roleName);
@@ -236,12 +232,18 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
 
     public function getContactsAction()
     {
-        $contacts = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBy(['manager' => null], [], 10);
-        foreach ($contacts as $contact) {
-            $contact->setManager($this->identity());
-            $this->entityManager->persist($contact);
+        $contacts = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getContactsForManager($this->params('entityId'));
+        if(empty($contacts))
+            $this->flashMessenger()->addErrorMessage('No contacts available in database "' . $this->getEntity()->getName() . '"');
+        else {
+            foreach ($contacts as $contact) {
+                $contact->setManager($this->identity());
+                $this->entityManager->persist($contact);
+            }
+            $this->entityManager->flush();
+            $this->flashMessenger()->addSuccessMessage(count($contacts) . ' contacts added to your database from "' . $this->getEntity()->getName() . '"');
         }
-        $this->entityManager->flush();
+
         return $this->redirect()->toRoute('tiny-crm/default', [
             'controller' => 'databases', 
             'action' => 'index'
@@ -285,6 +287,15 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                 'editCommentForm' => new Form\ContactForm($this->entityManager, 'edit-comment', $this->identity()),
                 'closedForm' => new Form\ContactForm($this->entityManager, 'closed', $this->identity()),
             ]);
+        }
+    }
+
+    public function setExtra()
+    {
+        $entity = $this->getEntity();
+        // manual clear managers https://github.com/doctrine/DoctrineModule/issues/300
+        if(empty($this->post['managers'])) {
+            $entity->getManagers()->clear();
         }
     }
 }

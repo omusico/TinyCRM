@@ -1,0 +1,20 @@
+<?php
+$editUrl = $this->url('tiny-crm/default', [
+    'controller' => 'databases', 
+    'action' => 'edit',
+    'entityId' => $database->getId(),
+],[ 'query' => [
+        // 'state' => 'Toll1',
+    ]
+]);
+?>
+<div class="btn-group">
+    <button aria-expanded="true" type="button" class="btn btn-xs btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+        Manage
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="<?php echo $editUrl; ?>">Edit</a></li>
+    </ul>
+</div>

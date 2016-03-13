@@ -120,15 +120,18 @@ return array(
         'TinyCRM\Controller\Databases' => [
             'entityClass' => 'TinyCRM\Entity\Database',
             'uploadPath' => 'public/uploads/databases',
-            // 'templates' => [
-            //     'create' => '',
-            //     'edit' => '',
-            // ],
             'forms' => [
                 'class' => 'TinyCRM\Form\DatabaseForm',
                 'options' => [
                     'create' => 'create',
                     'edit' => 'edit',
+                ],
+                'inputFulters' => [
+                    'class' => 'TinyCRM\Form\DatabaseFilter',
+                    'options' => [
+                        'create' => 'create',
+                        'edit' => 'edit',
+                    ],
                 ],
             ]
         ],

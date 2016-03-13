@@ -1,20 +1,61 @@
 <?php
-$getContactsUrl = $this->url('tiny-crm/default', [
-    'controller' => 'databases', 
-    'action' => 'get-contacts'
-]);
 $flashMessenger = $this->flashMessenger()->setMessageOpenFormat('<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>')->setMessageCloseString('</div>');
 ?>
 <section class="content-header">
     <?php echo $flashMessenger->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
+    <?php echo $flashMessenger->render('error', array('alert', 'alert-dismissable', 'alert-error')); ?>
     <h1><?php echo $pageTitle; ?></h1>
 </section>
 
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <a class="btn btn-app" href="<?php echo $getContactsUrl; ?>"><i class="fa fa-download"></i>Get contacts</a>
-        <div class="col-xs-12">
+            <a href="#" class="btn btn-app" data-toggle="modal" data-target="#databases-select"><i class="fa fa-download"></i>Get contacts</a>
+        </div>
+        <div class="modal fade" id="databases-select" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Select database you want to get</h4>
+                    </div>
+                    <?php 
+                    // $editCommentForm->setAttribute('action', $this->url('tiny-crm/default', [
+                    //     'controller' => 'contacts', 
+                    //     'action' => 'edit-comment', 
+                    //     'entityId' => $contactId])); 
+                    // $editCommentForm->prepare();
+                    // $comment = is_array($contact) ? $contact['comment'] : $contact->getComment();
+                    // $editCommentForm->get('comment')->setValue($comment);
+                    ?>
+                    <?php //echo $this->form()->openTag($editCommentForm); ?>
+                    <div class="modal-body">
+                        <div class="box-body">
+                                <?php //echo $this->formLabel($editCommentForm->get('comment')); ?>
+                            <?php foreach ($databasesAvailable as $database): 
+                                $getContactsUrl = $this->url('tiny-crm/default', [
+                                    'controller' => 'databases', 
+                                    'action' => 'get-contacts',
+                                    'entityId' => $database->getId()
+                                ]);
+                            ?>
+                                <div class="col-sm-3">
+                                    <a href="<?php echo $getContactsUrl; ?>" class="btn btn-app"><i class="fa fa-database"></i><?php echo $database->getName(); ?></a>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        <?php //echo $this->formSubmit($editCommentForm->get('submit')); ?>
+                    </div>
+                    <?php //echo $this->form()->closeTag($editCommentForm); ?>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-xs-12">

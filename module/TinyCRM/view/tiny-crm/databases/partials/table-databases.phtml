@@ -29,10 +29,11 @@ $searchForm->get('search')->setAttribute('class', 'form-control pull-right');
         <?php else: ?>
         <table class="table table-hover" id="contacts-table">
             <thead><tr>
-                <th>ID</th>
                 <th>Database</th>
-                <th>Contacts</th>
+                <th class="text-center">Contacts</th>
                 <th>Export</th>
+                <th class="text-center">Permissions</th>
+                <th class="text-center">Actions</th>
             </tr></thead>
             <tbody>
             <?php 
@@ -64,9 +65,10 @@ $searchForm->get('search')->setAttribute('class', 'form-control pull-right');
                 ]);
             ?>
             <tr id="<?php echo $database['entity']->getId(); ?>" class="table-item">
-                <td><?php echo $database['entity']->getId(); ?></td>
-                <td><a href="<?php echo $viewUrl; ?>"?><?php echo $database['entity']->getName(); ?></td>
-                <td><?php echo $database['count']; ?></td>
+                <td>
+                    <a href="<?php echo $viewUrl; ?>"?><?php echo $database['entity']->getName(); ?></a>
+                </td>
+                <td class="text-center"><?php echo $database['count']; ?></td>
                 <td id="export-database-<?php echo $database['entity']->getId(); ?>" data-update-state-export-url="<?php echo $updateStateExportUrl; ?>" data-download-csv-url="<?php echo $downloadCsvUrl; ?>" data-update-export-url="<?php echo $updateExportUrl; ?>">
                     <?php if($database['count'] == 0): ?>
                         No contacts uploaded. <a href="<?php echo $uploadCsvUrl; ?>">Upload</a> CSV file.
@@ -79,6 +81,30 @@ $searchForm->get('search')->setAttribute('class', 'form-control pull-right');
                     <?php else: ?>
                         <a href="javascript:updateExport('<?php echo $database['entity']->getId(); ?>')"><i class="fa fa-refresh"></i></a>
                     <?php endif; ?>
+                </td>
+                <td class="text-center">
+                    <?php 
+                    if($database['entity']->getIndividual()):
+                        foreach ($database['entity']->getManagers() as $key => $manager): 
+                            $editManagerUrl = $this->url('tiny-crm/default', [
+                                'controller' => 'managers',
+                                'action' => 'edit',
+                                'entityId' => $manager->getId(),
+                            ]);
+                    ?>
+                        <a href="<?php echo $editManagerUrl; ?>"?><?php echo $manager->getFullName(); ?></a><br>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                    All
+                    <?php endif; ?>
+                </td>
+                <td class="text-center" style="vertical-align: middle;">
+                    <?php echo $this->partial('tiny-crm/databases/partials/action-button-databases', [
+                        'database' => $database['entity'],
+                        // 'editCommentForm' => $editCommentForm,
+                        // 'moveScheduleForm' => $moveScheduleForm,
+                        // 'closedForm' => $closedForm
+                    ]); ?>
                 </td>
             </tr>
             <?php endforeach ?>

@@ -43,9 +43,26 @@ class Database implements \VisoftMailerModule\Entity\DatabaseInterface
      */
     protected $createdBy;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="individual", type="boolean", nullable=true)
+     */
+    private $individual;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="VisoftBaseModule\Entity\UserInterface")
+     * @ORM\JoinTable(name="tiny_crm_managers_to_database",
+     *      joinColumns={@ORM\JoinColumn(name="database_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")}
+     * )
+     */
+    private $managers;
+
+
    	public function __construct() {
    		$this->createdAt = new \DateTime();
    		$this->contacts = new Collections\ArrayCollection();
+        $this->managers = new Collections\ArrayCollection();
    	}
 
     public function getId() { return $this->id; }
@@ -53,6 +70,9 @@ class Database implements \VisoftMailerModule\Entity\DatabaseInterface
 
     public function getName() { return $this->name; }
     public function setName($name) { $this->name = $name; }
+
+    public function getIndividual() { return $this->individual; }
+    public function setIndividual($individual) { $this->individual = $individual; }
 
     public function getCreatedBy() { return $this->createdBy; }
     public function setCreatedBy($createdBy) {
@@ -91,5 +111,24 @@ class Database implements \VisoftMailerModule\Entity\DatabaseInterface
         foreach ($contacts as $contact) 
             $this->contacts->removeElement($contact);
         return $this;
+    }
+
+    public function getManagers() { return $this->managers; }
+    public function addManagers($managers) {
+        if(is_array($managers) || $managers instanceof Traversable 
+            || $managers instanceof Collections\ArrayCollection 
+            || $managers instanceof \Doctrine\ORM\PersistentCollection)
+            foreach ($managers as $manager) 
+                $this->managers->add($manager);
+        elseif($managers instanceof \VisoftMailerModule\Entity\MailingListInterface)
+            $this->managers->add($managers);
+        else 
+            throw new \Exception("Bad argument", 1);
+        return $this;
+    }
+    public function removeManagers($managers) {
+        foreach ($managers as $manager) 
+            $this->managers->removeElement($manager);
+        // return $this;
     }
 }

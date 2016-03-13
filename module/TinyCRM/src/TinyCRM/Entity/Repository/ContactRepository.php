@@ -6,27 +6,8 @@ use Doctrine\ORM\EntityRepository;
 
 class ContactRepository extends \VisoftMailerModule\Entity\Repository\ContactRepository
 {
-    // public function getDataForCalendar($identity)
-    // {
-    //     // $state = 
-    //     // var_dump($state);
-    //     // die('ddd');
-    //     $queryBuilder = $this->createQueryBuilder('contact');
-    //     $queryBuilder
-    //         ->select('MONTH(contact.time) AS month', 'DAY(contact.time) AS day')
-    //         ->where('contact.manager = :managerId')
-    //         ->andWhere('contact.state = :state')
-    //         ->setParameter('managerId', $identity->getId())
-    //         ->setParameter('state', $state->getId())
-    //         ->groupBy('month')
-    //         ->addGroupBy('day');
-    //     return $queryBuilder->getQuery()->getResult();
-    // }
-
     public function findByDate($date, $identity, $state)
     {
-        // var_dump($date->format('Y-m-d') . '%');
-        // die('ddd');
         $queryBuilder = $this->createQueryBuilder('contact');
         $queryBuilder
             ->select('contact')
@@ -76,17 +57,18 @@ class ContactRepository extends \VisoftMailerModule\Entity\Repository\ContactRep
             ->setParameter('string2', '%' . $searchBy . '%')
             ->setParameter('string3', '%' . $searchBy . '%');
         return  $queryBuilder->getQuery()->getResult();
+    }
 
-        // $em = $this->getEntityManager();
-        // $qb = $em->createQueryBuilder(); 
-        // $qb->select('user')
-        //     ->from( 'Admin\Entity\User',  'user')
-        //     // ->where('user.email LIKE LIKE ?', '%' . $searchBy . '%')
-        //     ->where('user.email LIKE :string1')
-        //     // ->orWhere('user.fullName LIKE ?', '%' . $searchBy . '%')
-        //     ->orWhere('user.fullName LIKE :string2')
-        //     ->setParameter('string1', '%' . $searchBy . '%')
-        //     ->setParameter('string2', '%' . $searchBy . '%');
-        // return  $qb->getQuery()->getResult();
+    public function getContactsForManager($databaseId, $limit = 10)
+    {
+        $queryBuilder = $this->createQueryBuilder('contact');
+        $queryBuilder
+            ->select('contact')
+            ->leftJoin('contact.databases', 'databases')
+            ->where('databases = :databaseId')
+            ->andWhere('contact.manager is NULL')
+            ->setParameter('databaseId', $databaseId)
+            ->setMaxResults($limit);
+        return  $queryBuilder->getQuery()->getResult();
     }
 }

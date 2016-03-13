@@ -1986,7 +1986,7 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -2098,12 +2098,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/VadimIzmalkov/VisoftBaseModule.git",
-                "reference": "def18b7075d63cf942167599302487a41800269c"
+                "reference": "a17631a5ad0b5b70afc5d17df4b2b407f5cc3cf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftBaseModule/zipball/def18b7075d63cf942167599302487a41800269c",
-                "reference": "def18b7075d63cf942167599302487a41800269c",
+                "url": "https://api.github.com/repos/VadimIzmalkov/VisoftBaseModule/zipball/a17631a5ad0b5b70afc5d17df4b2b407f5cc3cf9",
+                "reference": "a17631a5ad0b5b70afc5d17df4b2b407f5cc3cf9",
                 "shasum": ""
             },
             "require": {
@@ -2134,7 +2134,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2016-03-07 04:18:38"
+            "time": "2016-03-13 10:17:19"
         },
         {
             "name": "vadimizmalkov/visoft-mailer-module",

@@ -1,7 +1,12 @@
 .table-upload-contacts-statuses tbody > tr > td {
 	vertical-align: middle;
 }
-.table-upload-contacts-statuses td:nth-child(3) { 
+.table-upload-contacts-statuses td:nth-child(2) { 
 	font-size: 12px;
 	margin: 0;
+}
+
+.layout-boxed {
+    /*background: transparent url("../img/bg_v1.jpg") repeat fixed 0% 0%;*/
+    /*background: transparent radial-gradient(circle farthest-side at 100% 0px , #ffffff, #d1d1d1) no-repeat scroll 0% 0%;*/
 }
