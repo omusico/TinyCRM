@@ -10,3 +10,7 @@
     /*background: transparent url("../img/bg_v1.jpg") repeat fixed 0% 0%;*/
     /*background: transparent radial-gradient(circle farthest-side at 100% 0px , #ffffff, #d1d1d1) no-repeat scroll 0% 0%;*/
 }
+
+.progress-group .progress-text {
+    font-weight: 400;
+}

@@ -66,9 +66,21 @@ $searchForm->get('search')->setAttribute('class', 'form-control pull-right');
             ?>
             <tr id="<?php echo $database['entity']->getId(); ?>" class="table-item">
                 <td>
-                    <a href="<?php echo $viewUrl; ?>"?><?php echo $database['entity']->getName(); ?></a>
+                    <a href="<?php echo $viewUrl; ?>"?><?php echo $database['entity']->getName(); ?></a><br>
+                    <?php echo $database['count']; ?>
                 </td>
-                <td class="text-center"><?php echo $database['count']; ?></td>
+                <td>
+                    <?php if($database['count'] != 0): ?>
+                    <div class="progress-group">
+                        <span class="progress-text">Leads + Pending</span>
+                        <span class="progress-number"><b><?php echo $database['pending'] + $database['leads']; ?></b>/<?php echo $database['count']?></span>
+                        <div class="progress xxs">
+                            <?php $pendingPerc = ($database['pending'] + $database['leads']) / $database['count'] * 100; ?>
+                            <div class="progress-bar progress-bar-aqua" style="<?php echo 'width:' . $pendingPerc . '%' ?>"></div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </td>
                 <td id="export-database-<?php echo $database['entity']->getId(); ?>" data-update-state-export-url="<?php echo $updateStateExportUrl; ?>" data-download-csv-url="<?php echo $downloadCsvUrl; ?>" data-update-export-url="<?php echo $updateExportUrl; ?>">
                     <?php if($database['count'] == 0): ?>
                         No contacts uploaded. <a href="<?php echo $uploadCsvUrl; ?>">Upload</a> CSV file.

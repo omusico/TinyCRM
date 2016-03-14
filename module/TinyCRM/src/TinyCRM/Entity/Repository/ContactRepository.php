@@ -40,6 +40,18 @@ class ContactRepository extends \VisoftMailerModule\Entity\Repository\ContactRep
         return  $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
+    public function getCountStateByDatabaseIds($stateId, $databaseIds)
+    {
+        $queryBuilder = $this->createQueryBuilder('contact');
+        $queryBuilder
+            ->select('count(contact.id)')
+            ->leftJoin('contact.databases', 'databases')
+            ->add('where', $queryBuilder->expr()->in('databases', $databaseIds))
+            ->andWhere('contact.state = :stateId')
+            ->setParameter('stateId', $stateId);
+        return  $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
     public function findByUnibscribedFromMailingLists($databaseIds)
     {
         return null;

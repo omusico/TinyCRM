@@ -27,6 +27,8 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
                         'count' => $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountByDatabaseIds($database->getId()),
                         'entity' => $database,
                         'export-status' => $this->entityManager->getRepository('VisoftMailerModule\Entity\StatusDatabaseExport')->findOneBy(['database' => $database->getId()], ['createdAt' => 'DESC']),
+                        'pending' => $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(2, $database->getId()),
+                        'leads' => $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(1, $database->getId()),
                     ];
                 }
                 $viewModel->setVariables([
@@ -100,17 +102,24 @@ class DatabasesController extends \VisoftBaseModule\Controller\AbstractCrudContr
     public function viewAction()
     {
     	$database = $this->getEntity();
-        // $citiesManageIdsArray = $user->getCitiesManage()->map(function($entity) { return $entity->getId(); })->toArray();
-        $contactsTotal = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountByDatabaseIds($database->getId());
-    	$pageTitle = $database->getName() . " <small>Total: <strong>" . $contactsTotal . "</strong> contacts</small>";
+        $contacts['Total'] = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountByDatabaseIds($database->getId());
+        $contacts['Pending'] = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(2, $database->getId());
+        $contacts['Lead'] = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(1, $database->getId());
+        $contacts['Closed'] = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(3, $database->getId());
+        $contacts['Toll1'] = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(4, $database->getId());
+        $contacts['Toll2'] = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(5, $database->getId());
+        $contacts['Toll3'] = $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->getCountStateByDatabaseIds(6, $database->getId());
+    	$pageTitle = $database->getName() . " <small>Total: <strong>" . $contacts['Total'] . "</strong> contacts</small>";
         return new ViewModel([
         	'pageTitle' => $pageTitle,
         	'database' => $database,
-            'contacts' => $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBySibscribedOnMailingLists($database->getId()),
-            'export-status' => $this->entityManager->getRepository('VisoftMailerModule\Entity\StatusDatabaseExport')->findOneBy(['database' => $database->getId()], ['createdAt' => 'DESC']),
-            'moveScheduleForm' => new Form\ContactForm($this->entityManager, 'move-to-schedule', $this->identity()),
-            'editCommentForm' => new Form\ContactForm($this->entityManager, 'edit-comment', $this->identity()),
-            'closedForm' => new Form\ContactForm($this->entityManager, 'closed', $this->identity()),
+            'contacts' => $contacts,
+
+            // 'contacts' => $this->entityManager->getRepository('VisoftMailerModule\Entity\ContactInterface')->findBySibscribedOnMailingLists($database->getId()),
+            // 'export-status' => $this->entityManager->getRepository('VisoftMailerModule\Entity\StatusDatabaseExport')->findOneBy(['database' => $database->getId()], ['createdAt' => 'DESC']),
+            // 'moveScheduleForm' => new Form\ContactForm($this->entityManager, 'move-to-schedule', $this->identity()),
+            // 'editCommentForm' => new Form\ContactForm($this->entityManager, 'edit-comment', $this->identity()),
+            // 'closedForm' => new Form\ContactForm($this->entityManager, 'closed', $this->identity()),
         ]);
     }
 
